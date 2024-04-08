@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:03:40 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/06 16:13:45 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/08 20:18:48 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_strlen(char *str)
 {

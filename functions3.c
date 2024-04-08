@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 20:02:12 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/07 00:32:59 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/08 20:19:00 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/ft_printf.h"
+#include "ft_printf.h"
 
 static void	ft_moulinette(char *result, unsigned long long int nb, int size,
 		char *base)

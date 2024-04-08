@@ -6,11 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 01:33:03 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/07 00:21:45 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/08 20:18:28 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_size_malloc(long nb, int len_base)
 {

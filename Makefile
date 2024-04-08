@@ -6,7 +6,7 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 19:12:30 by madamou           #+#    #+#              #
-#    Updated: 2024/04/08 19:38:18 by madamou          ###   ########.fr        #
+#    Updated: 2024/04/08 20:18:12 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ./srcs/ft_printf.c ./srcs/ft_itoa.c ./srcs/functions.c ./srcs/functions2.c \
-		./srcs/functions3.c
+SRCS = ft_printf.c ft_itoa.c functions.c functions2.c functions3.c
 
 OBJS = $(SRCS:.c=.o)
 
