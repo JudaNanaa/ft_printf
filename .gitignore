@@ -2,3 +2,5 @@
 .vscode/
 *.o
 *.a
+build/
+output/
