@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/09 06:32:44 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/09 06:55:10 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_check_if_format(const char *str, int i, char *print, va_list args)
 		print = ft_hexa_uppercase(print, (unsigned int)va_arg(args,
 					unsigned int), 1);
 	else if (str[i] == '%' && (str[i + 1] == 'd' || str[i + 1] == 'i'))
-		print = ft_decimal(print, (int)va_arg(args, int));
+		print = ft_decimal(print, (int)va_arg(args, int), 1);
 	return (print);
 }
 
@@ -65,6 +65,14 @@ char *ft_format_if_hashtag(const char *str, int i, char *print, va_list args)
 	return (print);
 }
 
+char *ft_format_if_space(const char *str, int i, char *print, va_list args)
+{
+	if (str[i] == '%' && str[i + 1] == ' ' && (str[i + 2] == 'd'
+				|| str[i + 2] == 'i'))
+		print = ft_decimal(print, (int)va_arg(args, int), 2);
+	return (print);
+}
+
 int	ft_printf(const char *str, ...)
 {
 	static va_list	args;
@@ -73,6 +81,7 @@ int	ft_printf(const char *str, ...)
 
 	i = -1;
 	print = malloc(sizeof(char));
+	print[0] = '\0';
 	va_start(args, str);
 	while (str[++i] && print)
 	{
@@ -85,9 +94,12 @@ int	ft_printf(const char *str, ...)
 			i += 2;
 		}
 		if ((str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'x')
-				|| (str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'X'))
+				|| (str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'X')
+				|| (str[i] == '%' && str[i + 1] == ' ' && (str[i + 2] == 'd'
+				|| str[i + 2] == 'i')))
 		{
 			print = ft_format_if_hashtag(str, i, print, args);
+			print = ft_format_if_space(str, i, print, args);
 			i += 3;
 		}
 		if (!print)
@@ -101,6 +113,6 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	ft_printf("%#X, %#x , %d \n", 42 , 42, 42);
-	printf("%#X, %#x , %d \n", 42 , 42, 42);
+	ft_printf("%#X, %#x , % i \n", 42 , 42, 42);
+	printf("%#X, %#x , % i \n", 42 , 42, 42);
 }
