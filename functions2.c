@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 01:27:18 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/09 06:26:52 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/09 07:52:33 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,9 @@ char	*ft_hexa_lowercase(char *print, unsigned int nb, int cas)
 	if (!result)
 		return (NULL);
 	len_result = ft_strlen(result);
-	if (cas == 1)
-		print = ft_realloc(print, len_result);
 	if (cas == 2)
-		print = ft_realloc(print, len_result + 2);
+		len_result += 2;
+	print = ft_realloc(print, len_result);
 	if (!print)
 		return (NULL);
 	if (cas == 2)
@@ -91,10 +90,9 @@ char	*ft_hexa_uppercase(char *print, unsigned int nb, int cas)
 	if (!result)
 		return (NULL);
 	len_result = ft_strlen(result);
-	if (cas == 1)
-		print = ft_realloc(print, len_result);
 	if (cas == 2)
-		print = ft_realloc(print, len_result + 2);
+		len_result += 2;
+	print = ft_realloc(print, len_result);
 	if (!print)
 		return (NULL);
 	if (cas == 2)
