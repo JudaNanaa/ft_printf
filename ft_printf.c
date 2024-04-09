@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/08 20:18:38 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/09 06:32:44 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,23 @@ char	*ft_check_if_format(const char *str, int i, char *print, va_list args)
 		print = ft_pointer(print, (void *)va_arg(args, void *));
 	else if (str[i] == '%' && str[i + 1] == 'x')
 		print = ft_hexa_lowercase(print, (unsigned int)va_arg(args,
-					unsigned int));
+					unsigned int), 1);
 	else if (str[i] == '%' && str[i + 1] == 'X')
 		print = ft_hexa_uppercase(print, (unsigned int)va_arg(args,
-					unsigned int));
+					unsigned int), 1);
 	else if (str[i] == '%' && (str[i + 1] == 'd' || str[i + 1] == 'i'))
 		print = ft_decimal(print, (int)va_arg(args, int));
+	return (print);
+}
+
+char *ft_format_if_hashtag(const char *str, int i, char *print, va_list args)
+{
+	if (str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'x')
+		print = ft_hexa_lowercase(print, (unsigned int)va_arg(args,
+					unsigned int), 2);
+	if (str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'X')
+		print = ft_hexa_uppercase(print, (unsigned int)va_arg(args,
+					unsigned int), 2);
 	return (print);
 }
 
@@ -61,9 +72,9 @@ int	ft_printf(const char *str, ...)
 	int				i;
 
 	i = -1;
-	print = NULL;
+	print = malloc(sizeof(char));
 	va_start(args, str);
-	while (str[++i])
+	while (str[++i] && print)
 	{
 		if (str[i] == '%' && (str[i + 1] == 'c' || str[i + 1] == 's'
 				|| str[i + 1] == 'd' || str[i + 1] == 'i' || str[i + 1] == 'u'
@@ -71,10 +82,16 @@ int	ft_printf(const char *str, ...)
 				|| str[i + 1] == 'p'))
 		{
 			print = ft_check_if_format(str, i, print, args);
-			if (!print)
-				return (0);
 			i += 2;
 		}
+		if ((str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'x')
+				|| (str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'X'))
+		{
+			print = ft_format_if_hashtag(str, i, print, args);
+			i += 3;
+		}
+		if (!print)
+			return (0);
 		print = ft_str_to_print(print, str[i]);
 		if (!print)
 			return (0);
@@ -84,6 +101,6 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	ft_printf("%#X\n", 42);
-	printf("%#X\n", 42);
+	ft_printf("%#X, %#x , %d \n", 42 , 42, 42);
+	printf("%#X, %#x , %d \n", 42 , 42, 42);
 }
