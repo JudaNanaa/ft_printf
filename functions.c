@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:03:40 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/09 06:44:52 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/09 06:59:52 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,15 @@ char	*ft_decimal(char *print, int nb, int cas)
 	if (!result)
 		return (NULL);
 	len_result = ft_strlen(result);
-	if (cas == 2 && nb >= 0)
+	if ((cas == 2 || cas == 3) && nb >= 0)
 		len_result++;
 	print = ft_realloc(print, len_result);
 	if (!print)
 		return (NULL);
 	if (cas == 2 && nb >= 0)
 		print = ft_strcat(print, " ");
+	if (cas == 3 && nb >= 0)
+		print = ft_strcat(print, "+");
 	print = ft_strcat(print, result);
 	return (free(result), print);
 }

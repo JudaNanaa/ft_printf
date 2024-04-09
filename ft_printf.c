@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/09 06:55:10 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/09 07:00:49 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,14 @@ char *ft_format_if_space(const char *str, int i, char *print, va_list args)
 	return (print);
 }
 
+char *ft_format_if_plus(const char *str, int i, char *print, va_list args)
+{
+	if (str[i] == '%' && str[i + 1] == '+' && (str[i + 2] == 'd'
+				|| str[i + 2] == 'i'))
+		print = ft_decimal(print, (int)va_arg(args, int), 3);
+	return (print);
+}
+
 int	ft_printf(const char *str, ...)
 {
 	static va_list	args;
@@ -96,10 +104,13 @@ int	ft_printf(const char *str, ...)
 		if ((str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'x')
 				|| (str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'X')
 				|| (str[i] == '%' && str[i + 1] == ' ' && (str[i + 2] == 'd'
+				|| str[i + 2] == 'i'))
+				|| (str[i] == '%' && str[i + 1] == '+' && (str[i + 2] == 'd'
 				|| str[i + 2] == 'i')))
 		{
 			print = ft_format_if_hashtag(str, i, print, args);
 			print = ft_format_if_space(str, i, print, args);
+			print = ft_format_if_plus(str, i, print, args);
 			i += 3;
 		}
 		if (!print)
@@ -113,6 +124,6 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	ft_printf("%#X, %#x , % i \n", 42 , 42, 42);
-	printf("%#X, %#x , % i \n", 42 , 42, 42);
+	ft_printf("%#X, %#x , %+i \n", 42 , 42, 42);
+	printf("%#X, %#x , %+i \n", 42 , 42, 42);
 }
