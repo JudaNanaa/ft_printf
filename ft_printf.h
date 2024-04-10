@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:05:26 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/09 18:41:24 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/10 07:02:26 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	*ft_strcpy(char *dest, char *src);
 char	*ft_char(char *print, int c);
 char	*ft_decimal(char *print, int nb, int cas);
 char	*ft_decimal_zero(char *print, int nb, int result);
+char	*ft_hexa_lowercase_zero(char *print, unsigned int nb, int nb_zero);
+char	*ft_hexa_uppercase_zero(char *print, unsigned int nb, int nb_zero);
 char	*ft_itoa(int n);
 char	*ft_itoa_unsigned(unsigned int n);
 char	*ft_hexa_lowercase(char *print, unsigned int nb, int cas);
@@ -38,5 +40,6 @@ char	*ft_string(char *print, char *str);
 char	*ft_strcat(char *print, char *src);
 char	*ft_realloc(char *print, int len_realloc);
 char	*ft_unsigned(char *print, unsigned int nb);
+char	*ft_unsigned_zero(char *print, unsigned int nb, int nb_zero);
 
 #endif

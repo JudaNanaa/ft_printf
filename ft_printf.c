@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/09 19:12:41 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/10 07:10:07 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,25 @@ char *ft_format_if_plus(const char *str, int i, char *print, va_list args)
 
 char *ft_format_if_zero(const char *str, int i, char *print, va_list args)
 {
-	int result;
+	int nb_zero;
 	
-	result = 0;
+	nb_zero = 0;
 	while (str[i + 2] >= '0' && str[i + 2] <= '9')
 	{
-		result = result * 10;
-		result = result + (str[i++ + 2] - '0');
+		nb_zero = nb_zero * 10;
+		nb_zero = nb_zero + (str[i++ + 2] - '0');
 	}
 	if (str[i + 2] == 'd' || str[i + 2] == 'i')
-		print = ft_decimal_zero(print, (int)va_arg(args, int), result);
+		print = ft_decimal_zero(print, (int)va_arg(args, int), nb_zero);
+	if (str[i + 2] == 'x')
+		print = ft_hexa_lowercase_zero(print, (unsigned int)va_arg(args,
+				unsigned int), nb_zero);
+	if (str[i + 2] == 'X')
+		print = ft_hexa_uppercase_zero(print, (unsigned int)va_arg(args,
+				unsigned int), nb_zero);
+	if (str[i + 2] == 'u')
+		print = ft_unsigned_zero(print, (unsigned int)va_arg(args,
+				unsigned int), nb_zero);
 	return (print);
 }
 
@@ -135,7 +144,9 @@ int	ft_printf(const char *str, ...)
 			print = ft_format_if_zero(str, i, print, args);
 			while (str[i + 2 + j] >= '0' && str[i + 2 + j] <= '9')
 				j++;
-			if (str[i + 2 + j] == 'd' || str[i + 2 + j] == 'i')
+			if (str[i + 2 + j] == 'd' || str[i + 2 + j] == 'i' 
+				|| str[i + 2 + j] == 'x' || str[i + 2 + j] == 'X'
+				|| str[i + 2 + j] == 'u')
 				i += j + 2 + 1;
 		}
 		if (!print)
@@ -149,7 +160,7 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	int number = 42;
-	ft_printf("%02i\n", number);
-	printf("%02i\n", number);
+	char number[] = "je test un truc en vif tkt pas mon gars";
+	ft_printf("%010u\n", number);
+	printf("%.10s\n", number);
 }
