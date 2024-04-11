@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/10 07:10:07 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/11 07:16:56 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,24 +84,25 @@ char *ft_format_if_plus(const char *str, int i, char *print, va_list args)
 char *ft_format_if_zero(const char *str, int i, char *print, va_list args)
 {
 	int nb_zero;
+	int j;
 	
+	j = 0;
 	nb_zero = 0;
-	while (str[i + 2] >= '0' && str[i + 2] <= '9')
-	{
-		nb_zero = nb_zero * 10;
-		nb_zero = nb_zero + (str[i++ + 2] - '0');
-	}
-	if (str[i + 2] == 'd' || str[i + 2] == 'i')
+	while (str[i + j + 2] >= '0' && str[i + j + 2] <= '9')
+		nb_zero = (nb_zero  * 10) + (str[i + j++ + 2] - '0');
+	if (str[i + j + 2] == 'd' || str[i + j + 2] == 'i')
 		print = ft_decimal_zero(print, (int)va_arg(args, int), nb_zero);
-	if (str[i + 2] == 'x')
+	if (str[i + j + 2] == 'x')
 		print = ft_hexa_lowercase_zero(print, (unsigned int)va_arg(args,
 				unsigned int), nb_zero);
-	if (str[i + 2] == 'X')
+	if (str[i + j + 2] == 'X')
 		print = ft_hexa_uppercase_zero(print, (unsigned int)va_arg(args,
 				unsigned int), nb_zero);
-	if (str[i + 2] == 'u')
+	if (str[i + j + 2] == 'u')
 		print = ft_unsigned_zero(print, (unsigned int)va_arg(args,
 				unsigned int), nb_zero);
+	if (str[i + j + 2] == 's' && str[i + 1] == '.')
+		print = ft_string_zero(print, (char *)va_arg(args, char *), nb_zero);
 	return (print);
 }
 
@@ -139,14 +140,14 @@ int	ft_printf(const char *str, ...)
 			print = ft_format_if_plus(str, i, print, args);
 			i += 3;
 		}
-		if (str[i] == '%' && str[i + 1] == '0')
+		if (str[i] == '%' && (str[i + 1] == '0' || str[i + 1] == '.'))
 		{
 			print = ft_format_if_zero(str, i, print, args);
 			while (str[i + 2 + j] >= '0' && str[i + 2 + j] <= '9')
 				j++;
 			if (str[i + 2 + j] == 'd' || str[i + 2 + j] == 'i' 
 				|| str[i + 2 + j] == 'x' || str[i + 2 + j] == 'X'
-				|| str[i + 2 + j] == 'u')
+				|| str[i + 2 + j] == 'u' || str[i + 2 + j] == 's')
 				i += j + 2 + 1;
 		}
 		if (!print)
@@ -160,7 +161,7 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	char number[] = "je test un truc en vif tkt pas mon gars";
-	ft_printf("%010u\n", number);
+	char number[] = "je test un truc en vif";
+	ft_printf("%010s\n", number);
 	printf("%.10s\n", number);
 }

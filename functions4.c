@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 06:52:03 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/10 07:04:56 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/11 07:05:16 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,20 @@ char	*ft_unsigned_zero(char *print, unsigned int nb, int nb_zero)
 	else
 		print = ft_unsigned(print, nb);
 	return (free(result), print);
+}
+
+char	*ft_string_zero(char *print, char *str, int nb_string)
+{
+	size_t	i;
+	int		j;
+	
+	print = ft_realloc(print, nb_string);
+	if (!print)
+		return (NULL);
+	i = ft_strlen(print);
+	j = 0;
+	while (str[j] && j < nb_string)
+		print[i++] = str[j++];
+	print[i] = '\0';
+	return (print);
 }
