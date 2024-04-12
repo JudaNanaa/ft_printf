@@ -6,7 +6,7 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 19:12:30 by madamou           #+#    #+#              #
-#    Updated: 2024/04/10 22:00:22 by madamou          ###   ########.fr        #
+#    Updated: 2024/04/12 07:39:56 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_printf.c ft_itoa.c functions.c functions2.c functions3.c
+SRCS = ft_printf.c ft_itoa.c functions.c functions2.c functions3.c \
+		functions4.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -29,7 +30,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c -include ./ft_printf.h $< -o $@
 
 clean:
-	rm -rf $(OBJS) $(OBJS_BONUS)
+	rm -rf $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)

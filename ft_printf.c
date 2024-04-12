@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/11 07:16:56 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/11 22:01:47 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,9 @@ int	ft_printf(const char *str, ...)
 	return (va_end(args), i = ft_strlen(print), ft_putstr(print), i);
 }
 
-int	main(void)
-{
-	char number[] = "je test un truc en vif";
-	ft_printf("%010s\n", number);
-	printf("%.10s\n", number);
-}
+// int	main(void)
+// {
+// 	char number[] = "je test un truc en vif";
+// 	ft_printf("%010s\n", number);
+// 	printf("%.10s\n", number);
+// }
