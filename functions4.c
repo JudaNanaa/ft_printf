@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 06:52:03 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/11 07:05:16 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/14 02:59:10 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,42 @@ char	*ft_string_zero(char *print, char *str, int nb_string)
 {
 	size_t	i;
 	int		j;
-	
+
 	print = ft_realloc(print, nb_string);
 	if (!print)
 		return (NULL);
 	i = ft_strlen(print);
 	j = 0;
 	while (str[j] && j < nb_string)
+	{
 		print[i++] = str[j++];
+		ft_len_print(1);
+	}
 	print[i] = '\0';
 	return (print);
+}
+
+int	ft_size_malloc_long(unsigned long long int nb, int len_base)
+{
+	int	size;
+
+	size = 1;
+	while (nb / len_base > 0)
+	{
+		nb = nb / len_base;
+		size++;
+	}
+	return (size);
+}
+
+int	ft_len_print(int cas)
+{
+	static int	len;
+
+	if (cas == 1)
+	{
+		len++;
+		return (len);
+	}
+	return (len);
 }

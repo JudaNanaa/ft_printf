@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 01:33:03 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/08 20:18:28 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/14 02:45:39 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	*ft_itoa_base(unsigned int nb, char *base)
 	int		len_base;
 
 	len_base = ft_strlen(base);
-	size = ft_size_malloc(nb, len_base);
+	size = ft_size_malloc_long(nb, len_base);
 	result = malloc(sizeof(char) * (size + 1));
 	if (result == NULL)
 		return (NULL);

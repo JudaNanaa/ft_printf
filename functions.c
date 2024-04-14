@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:03:40 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/09 06:59:52 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/14 02:25:57 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,23 @@ char	*ft_str_to_print(char *print, char c)
 	if (!print)
 		return (free(tmp), NULL);
 	print = ft_strcpy(print, tmp);
-	print[i++] = c;
-	print[i] = '\0';
+	print[i] = c;
+	ft_len_print(1);
+	print[++i] = '\0';
 	return (free(tmp), print);
 }
 
-char	*ft_char(char *print, int c)
+char	*ft_char(char *print, char c)
 {
+	int	i;
+
+	i = ft_strlen(print);
 	print = ft_realloc(print, 1);
 	if (!print)
 		return (NULL);
-	print = ft_strcat(print, (char *)&c);
+	print[i] = c;
+	ft_len_print(1);
+	print[++i] = '\0';
 	return (print);
 }
 

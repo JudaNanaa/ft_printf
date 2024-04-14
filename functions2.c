@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 01:27:18 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/09 07:52:33 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/14 03:58:31 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ char	*ft_realloc(char *print, int len_realloc)
 
 char	*ft_string(char *print, char *str)
 {
+	if (!str)
+	{
+		print = ft_realloc(print, 6);
+		if (!print)
+			return (NULL);
+		print = ft_strcat(print, "(null)");
+		return (print);
+	}
 	print = ft_realloc(print, ft_strlen(str));
 	if (!print)
 		return (NULL);
@@ -64,6 +72,8 @@ char	*ft_hexa_lowercase(char *print, unsigned int nb, int cas)
 	char	*base;
 
 	base = "0123456789abcdef";
+	if (nb == 0)
+		return (print = ft_realloc(print, 1), ft_strcat(print, "0"));
 	result = ft_itoa_base(nb, base);
 	if (!result)
 		return (NULL);
@@ -86,6 +96,8 @@ char	*ft_hexa_uppercase(char *print, unsigned int nb, int cas)
 	char	*base;
 
 	base = "0123456789ABCDEF";
+	if (nb == 0)
+		return (print = ft_realloc(print, 1), ft_strcat(print, "0"));
 	result = ft_itoa_base(nb, base);
 	if (!result)
 		return (NULL);

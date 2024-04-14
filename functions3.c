@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 20:02:12 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/10 06:49:22 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/14 03:35:36 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_itoa_long_long(unsigned long long int nb, char *base)
 	int		len_base;
 
 	len_base = ft_strlen(base);
-	size = ft_size_malloc(nb, len_base);
+	size = ft_size_malloc_long(nb, len_base);
 	result = malloc(sizeof(char) * (size + 1));
 	if (result == NULL)
 		return (NULL);
@@ -46,7 +46,6 @@ char	*ft_pointer(char *print, void *ptr)
 {
 	unsigned long long int	true_ptr;
 	char					*result;
-	int						len_result;
 	char					*base;
 
 	base = "0123456789abcdef";
@@ -54,20 +53,28 @@ char	*ft_pointer(char *print, void *ptr)
 	result = ft_itoa_long_long(true_ptr, base);
 	if (!result)
 		return (NULL);
-	len_result = ft_strlen(result);
-	print = ft_realloc(print, len_result + 2);
-	if (!print)
-		return (NULL);
-	print = ft_strcat(print, "0x");
-	print = ft_strcat(print, result);
+	if (true_ptr != 0)
+	{
+		print = ft_realloc(print, ft_strlen(result) + 2);
+		if (!print)
+			return (free(result), NULL);
+		print = ft_strcat(print, "0x");
+		print = ft_strcat(print, result);
+	}
+	else
+	{
+		print = ft_realloc(print, 5);
+		if (!print)
+			return (free(result), NULL);
+		print = ft_strcat(print, "(nil)");
+	}
 	return (free(result), print);
 }
 
 char	*ft_decimal_zero(char *print, int nb, int nb_zero)
 {
 	char	*result;
-	int		len_result;
-	int sign;
+	int		sign;
 
 	sign = 0;
 	if (nb < 0)
@@ -78,20 +85,15 @@ char	*ft_decimal_zero(char *print, int nb, int nb_zero)
 	result = ft_itoa(nb);
 	if (!result)
 		return (NULL);
-	len_result = ft_strlen(result);
-	if (len_result + sign < nb_zero)
-	{
-		print = ft_realloc(print, nb_zero);
-		if (!print)
-			return (free(result), NULL);
-		if (sign == 1)
-			print = ft_strcat(print, "-");
-		while (nb_zero-- - sign > len_result)
-			print = ft_strcat(print, "0");
-		print = ft_strcat(print, result);
-	}
+	if (ft_strlen(result) < nb_zero)
+		print = ft_fill_zero(print, nb_zero, result, sign);
 	else
-		print = ft_decimal(print, nb, 1);
+	{
+		if (sign == 1)
+			print = ft_decimal(print, -nb, 1);
+		else
+			print = ft_decimal(print, nb, 1);
+	}
 	return (free(result), print);
 }
 
