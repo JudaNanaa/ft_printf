@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/14 21:03:25 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/20 12:35:26 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_putstr(char *s)
 {
 	if (s)
 	{
-		write(1, s, ft_strlen(s));
+		write(1, s, ft_len_print(2));
 		free(s);
 	}
 }
@@ -44,37 +44,13 @@ char	*ft_check_if_format(const char *str, int i, char *print, va_list args)
 	return (print);
 }
 
-char	*ft_format_bonus(const char *str, int i, char *print, va_list args)
+char	*ft_printf_bis(char *print, const char *str, va_list args)
 {
-	if (str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'x')
-		print = ft_hexa_lowercase(print, (unsigned int)va_arg(args,
-					unsigned int), 2);
-	if (str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'X')
-		print = ft_hexa_uppercase(print, (unsigned int)va_arg(args,
-					unsigned int), 2);
-	if (str[i] == '%' && str[i + 1] == ' ' && (str[i + 2] == 'd'
-			|| str[i + 2] == 'i'))
-		print = ft_decimal(print, (int)va_arg(args, int), 2);
-	if (str[i] == '%' && str[i + 1] == '+' && (str[i + 2] == 'd'
-			|| str[i + 2] == 'i'))
-		print = ft_decimal(print, (int)va_arg(args, int), 3);
-	return (print);
-}
-
-int	ft_printf(const char *str, ...)
-{
-	va_list	args;
-	char	*print;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	print = malloc(sizeof(char));
-	print[0] = '\0';
-	va_start(args, str);
 	while (str[i] && print)
 	{
-		j = 0;
 		if (ft_check_basic(str, i) == 1)
 		{
 			print = ft_check_if_format(str, i, print, args);
@@ -83,27 +59,32 @@ int	ft_printf(const char *str, ...)
 		else if (ft_check_bonus(str, i) == 1)
 		{
 			print = ft_format_bonus(str, i, print, args);
-			i += 3;
-		}
-		else if (str[i] == '%' && (str[i + 1] == '0' || str[i + 1] == '.'
-				|| str[i + 1] == ' ' || str[i + 1] == '-'))
-		{
-			print = ft_format_if_zero(str, i, print, args);
-			while (str[i + 2 + j] >= '0' && str[i + 2 + j] <= '9')
-				j++;
-			if (ft_check_zero(str, i, j) == 1)
-				i += j + 2 + 1;
+			i = ft_give_good_increment(str, i);
 		}
 		else if (str[i])
 			print = ft_str_to_print(print, str[i++]);
 		if (!print)
-			return (0);
+			return (NULL);
 	}
+	return (print);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list	args;
+	char	*print;
+
+	print = malloc(sizeof(char));
+	print[0] = '\0';
+	va_start(args, str);
+	print = ft_printf_bis(print, str, args);
+	if (!print)
+		return (0);
 	return (va_end(args), ft_putstr(print), ft_len_print(2));
 }
 
-int	main(void)
-{
-	printf(" %d\n", printf(" %-100d ", 12));
-	printf(" %d\n", ft_printf(" %-100d ", 12));
-}
+// int	main(void)
+// {
+// 	printf(" %d\n", printf(" %10d ", -1));
+// 	printf(" %d\n", ft_printf(" %10d ", -1));
+// }

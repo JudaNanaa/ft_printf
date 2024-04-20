@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 01:27:18 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/14 03:58:31 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/18 22:39:36 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_realloc(char *print, int len_realloc)
 	char	*tmp;
 	int		i;
 
-	i = ft_strlen(print);
+	i = ft_len_print(2);
 	tmp = malloc(sizeof(char) * (i + 1));
 	if (!tmp)
 		return (NULL);

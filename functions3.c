@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 20:02:12 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/14 03:35:36 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/20 12:33:34 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ char	*ft_decimal_zero(char *print, int nb, int nb_zero)
 	result = ft_itoa(nb);
 	if (!result)
 		return (NULL);
-	if (ft_strlen(result) < nb_zero)
-		print = ft_fill_zero(print, nb_zero, result, sign);
+	if (nb_zero > ft_strlen(result))
+		print = ft_fill_zero1(print, nb_zero, result, sign);
 	else
 	{
 		if (sign == 1)
@@ -97,27 +97,28 @@ char	*ft_decimal_zero(char *print, int nb, int nb_zero)
 	return (free(result), print);
 }
 
-char	*ft_hexa_lowercase_zero(char *print, unsigned int nb, int nb_zero)
+char	*ft_decimal_zero1(char *print, int nb, int nb_zero)
 {
 	char	*result;
-	int		len_result;
-	char	*base;
+	int		sign;
 
-	base = "0123456789abcdef";
-	result = ft_itoa_base(nb, base);
+	sign = 0;
+	if (nb < 0)
+	{
+		nb = -nb;
+		sign = 1;
+	}
+	result = ft_itoa(nb);
 	if (!result)
 		return (NULL);
-	len_result = ft_strlen(result);
-	if (len_result < nb_zero)
-	{
-		print = ft_realloc(print, nb_zero);
-		if (!print)
-			return (free(result), NULL);
-		while (nb_zero-- > len_result)
-			print = ft_strcat(print, "0");
-		print = ft_strcat(print, result);
-	}
+	if (nb_zero > ft_strlen(result))
+		print = ft_fill_zero(print, nb_zero, result, sign);
 	else
-		print = ft_hexa_lowercase(print, nb, 1);
+	{
+		if (sign == 1)
+			print = ft_decimal(print, -nb, 1);
+		else
+			print = ft_decimal(print, nb, 1);
+	}
 	return (free(result), print);
 }

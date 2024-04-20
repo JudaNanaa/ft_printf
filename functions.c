@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:03:40 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/14 02:25:57 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/18 22:37:16 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strcpy(char *dest, char *src)
 	int	i;
 
 	i = 0;
-	while (src && src[i])
+	while (i < ft_len_print(2))
 	{
 		dest[i] = src[i];
 		i++;
@@ -41,14 +41,14 @@ char	*ft_str_to_print(char *print, char c)
 	char	*tmp;
 	int		i;
 
-	i = ft_strlen(print);
-	tmp = malloc(sizeof(char) * (ft_strlen(print) + 1));
+	i = ft_len_print(2);
+	tmp = malloc(sizeof(char) * (i + 1));
 	if (!tmp)
 		return (NULL);
 	tmp[0] = '\0';
 	tmp = ft_strcpy(tmp, print);
 	free(print);
-	print = malloc(sizeof(char) * (ft_strlen(tmp) + 1 + 1));
+	print = malloc(sizeof(char) * (i + 1 + 1));
 	if (!print)
 		return (free(tmp), NULL);
 	print = ft_strcpy(print, tmp);
@@ -62,8 +62,8 @@ char	*ft_char(char *print, char c)
 {
 	int	i;
 
-	i = ft_strlen(print);
-	print = ft_realloc(print, 1);
+	i = ft_len_print(2);
+	print = ft_realloc(print, 3);
 	if (!print)
 		return (NULL);
 	print[i] = c;
