@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:05:26 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/20 11:17:38 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/20 20:33:33 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ int		ft_check_zero(const char *str, int i, int j);
 int		ft_give_good_increment(const char *str, int i);
 int		ft_nb_zero(const char *str, int i);
 int		ft_increment(const char *str, int i);
+int ft_check_for_increment(const char *str, int i, int j);
 
 char	*ft_itoa(int n);
+char *ft_format_percent(char *print, const char *str, int i);
 char	*ft_itoa_unsigned(unsigned int n);
 char	*ft_printf_bis(char *print, const char *str, va_list args);
 char	*ft_itoa_base(unsigned int nb, char *base);

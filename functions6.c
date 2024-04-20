@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 14:03:20 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/20 10:44:59 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/20 20:31:23 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,10 @@ int	ft_check_zero(const char *str, int i, int j)
 		if (str[i + j + 2] == 's' || str[i + j + 2] == 'd' || str[i + j
 				+ 2] == 'i' || str[i + j + 2] == 'p' || str[i + j + 2] == 'u'
 			|| str[i + j + 2] == 'x' || str[i + j + 2] == 'X' || str[i + j
-				+ 2] == 'c')
+				+ 2] == 'c' || str[i + j + 2] == '%')
 			return (1);
 	}
-	if ((str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'x')
-		|| (str[i] == '%' && str[i + 1] == '#' && str[i + 2] == 'X')
-		|| (str[i] == '%' && str[i + 1] == ' ' && (str[i + 2] == 'd' || str[i
-					+ 2] == 'i')) || (str[i] == '%' && str[i + 1] == '+'
-			&& (str[i + 2] == 'd' || str[i + 2] == 'i')))
+	if (ft_check_for_increment(str, i, j) == 1)
 		return (1);
 	return (0);
 }

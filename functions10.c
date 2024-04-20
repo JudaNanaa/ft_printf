@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:19:06 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/20 11:22:38 by madamou          ###   ########.fr       */
+/*   Updated: 2024/04/20 20:33:50 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*ft_format_minus(char *print, const char *str, int i, va_list args)
 	if (str[i + j + 2] == 'X')
 		print = ft_hexa_uppercase_space(print, (unsigned int)va_arg(args,
 					unsigned int), nb_zero);
+	if (str[i + j + 2] == '%')
+		print = ft_char(print, '%');
 	return (print);
 }
 
@@ -72,5 +74,7 @@ char	*ft_format_bonus(const char *str, int i, char *print, va_list args)
 		print = ft_format_hashtag(print, str, i, args);
 	if (str[i + 1] == '+')
 		print = ft_format_plus(print, str, i, args);
+	if (str[i + 1] >= '1' && str[i + 1] <= '9')
+		print = ft_format_percent(print, str, i);
 	return (print);
 }
