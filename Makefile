@@ -6,7 +6,7 @@
 #    By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 19:12:30 by madamou           #+#    #+#              #
-#    Updated: 2024/04/20 12:37:53 by madamou          ###   ########.fr        #
+#    Updated: 2024/04/20 22:31:37 by madamou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME = libftprintf.a
 all = $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
+	ar crs $(NAME) $(OBJS)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c -include ./ft_printf.h $< -o $@

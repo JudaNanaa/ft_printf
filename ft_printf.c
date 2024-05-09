@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/20 20:56:41 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/09 14:51:19 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	ft_printf(const char *str, ...)
 
 	print = malloc(sizeof(char));
 	print[0] = '\0';
+	ft_len_print(0);
 	va_start(args, str);
 	print = ft_printf_bis(print, str, args);
 	if (!print)
@@ -85,6 +86,6 @@ int	ft_printf(const char *str, ...)
 
 // int	main(void)
 // {
-// 	printf(" %d\n", printf("%.7s%.2s", "hello", "world"));
-// 	printf(" %d\n", ft_printf("%.7s%.2s", "hello", "world"));
+// 	printf(" %d\n", printf("%-10dtes moche\n", 348));
+// 	printf(" %d\n", ft_printf("%-10dtes moche\n", 348));
 // }

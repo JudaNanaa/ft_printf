@@ -6,13 +6,13 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:21:15 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/20 11:25:50 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/09 14:53:39 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strcat(char *print, char *src)
+char	*ft_strcatt(char *print, char *src)
 {
 	size_t	i;
 	size_t	j;
@@ -30,20 +30,20 @@ char	*ft_strcat(char *print, char *src)
 
 int	ft_check_basic(const char *str, int i)
 {
-	if (str[i] == '%' && (str[i + 1] == 'c' || str[i + 1] == 's'
-			|| str[i + 1] == 'd' || str[i + 1] == 'i' || str[i + 1] == 'u'
-			|| str[i + 1] == 'x' || str[i + 1] == 'X' || str[i + 1] == '%'
-			|| str[i + 1] == 'p'))
+	if (str[i] == '%' && (str[i + 1] == 'c' || str[i + 1] == 's' || str[i
+				+ 1] == 'd' || str[i + 1] == 'i' || str[i + 1] == 'u' || str[i
+				+ 1] == 'x' || str[i + 1] == 'X' || str[i + 1] == '%' || str[i
+				+ 1] == 'p'))
 		return (1);
 	return (0);
 }
 
 int	ft_check_bonus(const char *str, int i)
 {
-	if (str[i] == '%' && (str[i + 1] == '0' || str[i + 1] == '.'
-			|| str[i + 1] == ' ' || str[i + 1] == '-' || (str[i + 1] >= '1'
-				&& str[i + 1] <= '9') || str[i + 1] == '#'
-			|| str[i + 1] == ' ' || str[i + 1] == '+'))
+	if (str[i] == '%' && (str[i + 1] == '0' || str[i + 1] == '.' || str[i
+				+ 1] == ' ' || str[i + 1] == '-' || (str[i + 1] >= '1' && str[i
+					+ 1] <= '9') || str[i + 1] == '#' || str[i + 1] == ' '
+			|| str[i + 1] == '+'))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:34:42 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/20 11:12:45 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/09 00:48:07 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 char	*ft_fill_zero1(char *print, int nb_zero, char *result, int sign)
 {
-	print = ft_realloc(print, nb_zero + sign);
+	print = ft_reallocc(print, nb_zero + sign);
 	if (!print)
 		return (free(result), NULL);
 	if (sign == 1)
-		print = ft_strcat(print, "-");
-	while (nb_zero-- - sign > ft_strlen(result))
-		print = ft_strcat(print, "0");
-	print = ft_strcat(print, result);
+		print = ft_strcatt(print, "-");
+	while (nb_zero-- - sign > ft_strlen1(result))
+		print = ft_strcatt(print, "0");
+	print = ft_strcatt(print, result);
 	return (print);
 }
 
 char	*ft_fill_zero(char *print, int nb_zero, char *result, int sign)
 {
-	print = ft_realloc(print, nb_zero + sign);
+	print = ft_reallocc(print, nb_zero + sign);
 	if (!print)
 		return (free(result), NULL);
 	if (sign == 1)
-		print = ft_strcat(print, "-");
-	while (nb_zero-- > ft_strlen(result))
-		print = ft_strcat(print, "0");
-	print = ft_strcat(print, result);
+		print = ft_strcatt(print, "-");
+	while (nb_zero-- > ft_strlen1(result))
+		print = ft_strcatt(print, "0");
+	print = ft_strcatt(print, result);
 	return (print);
 }
 

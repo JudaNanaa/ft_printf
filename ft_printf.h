@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:05:26 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/20 20:33:33 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/09 00:46:12 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 
 int		ft_printf(const char *str, ...);
-int		ft_strlen(char *str);
+int		ft_strlen1(char *str);
 int		ft_size_malloc(long nb, int len_base);
 int		ft_size_malloc_long(unsigned long long int nb, int len_base);
 int		ft_len_print(int cas);
@@ -30,17 +30,17 @@ int		ft_check_zero(const char *str, int i, int j);
 int		ft_give_good_increment(const char *str, int i);
 int		ft_nb_zero(const char *str, int i);
 int		ft_increment(const char *str, int i);
-int ft_check_for_increment(const char *str, int i, int j);
+int		ft_check_for_increment(const char *str, int i, int j);
 
 char	*ft_itoa(int n);
-char *ft_format_percent(char *print, const char *str, int i);
+char	*ft_format_percent(char *print, const char *str, int i);
 char	*ft_itoa_unsigned(unsigned int n);
 char	*ft_printf_bis(char *print, const char *str, va_list args);
 char	*ft_itoa_base(unsigned int nb, char *base);
 char	*ft_itoa_long_long(unsigned long long int nb, char *base);
-char	*ft_strcpy(char *dest, char *src);
-char	*ft_strcat(char *print, char *src);
-char	*ft_realloc(char *print, int len_realloc);
+char	*ft_strcpyy(char *dest, char *src);
+char	*ft_strcatt(char *print, char *src);
+char	*ft_reallocc(char *print, int len_realloc);
 char	*ft_char(char *print, char c);
 char	*ft_string(char *print, char *str);
 char	*ft_space_string(char *print, char *str, int nb_space);
