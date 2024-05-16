@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 14:03:20 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 14:52:25 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/12 13:58:47 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ char	*ft_space_string(char *print, char *str, int nb_space)
 		print = ft_reallocc(print, 6);
 		if (!print)
 			return (NULL);
+		while (nb_space-- - 6 > 0)
+			print = ft_strcatt(print, " ");
 		print = ft_strcatt(print, "(null)");
 		return (print);
 	}

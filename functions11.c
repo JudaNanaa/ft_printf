@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:21:15 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 14:53:39 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/12 13:54:16 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,19 @@ int	ft_increment(const char *str, int i)
 {
 	int	nb_zero;
 	int	j;
+	int first;
 
+	first = 0;
 	j = 0;
 	nb_zero = 0;
 	if (str[i + 1] >= '1' && str[i + 1] <= '9')
-		nb_zero = str[i + j + 1] - '0';
-	while (str[i + j + 2] >= '0' && str[i + j + 2] <= '9')
-		nb_zero = (nb_zero * 10) + (str[i + j++ + 2] - '0');
-	return (j);
+	{
+		nb_zero = str[i + j++ + 1] - '0';
+		first = 1;
+	}
+	while (str[i + j + 2 - first] >= '0' && str[i + j + 2 - first] <= '9')
+		nb_zero = (nb_zero * 10) + (str[i + j++ + 2 - first] - '0');
+	if (str[i + j + 2 - first] == '.')
+		j++;
+	return (j - first);
 }

@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 20:02:12 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 00:49:37 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/11 19:13:13 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,9 @@ char	*ft_decimal_zero1(char *print, int nb, int nb_zero)
 	result = ft_itoa(nb);
 	if (!result)
 		return (NULL);
-	if (nb_zero > ft_strlen1(result))
+	if (result[0] == '0' && nb_zero == 0)
+		return (free(result), print);
+	if (nb_zero > ft_strlen1(result) - sign)
 		print = ft_fill_zero(print, nb_zero, result, sign);
 	else
 	{

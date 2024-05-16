@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 14:51:19 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/16 05:57:16 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int	ft_printf(const char *str, ...)
 	return (va_end(args), ft_putstr(print), ft_len_print(2));
 }
 
-// int	main(void)
-// {
-// 	printf(" %d\n", printf("%-10dtes moche\n", 348));
-// 	printf(" %d\n", ft_printf("%-10dtes moche\n", 348));
-// }
+int	main(void)
+{
+	printf(" %d\n", printf("pegadinha po"));
+	printf(" %d\n", ft_printf("pegadinha po"));
+}

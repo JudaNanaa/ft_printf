@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 11:19:06 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 14:53:10 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/12 15:23:54 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ char	*ft_format_minus(char *print, const char *str, int i, va_list args)
 	int	nb_zero;
 	int	j;
 
+	if (str[i + 1] == '-')
+	{
+		while (str[i + 1] == '-')
+			i++;
+		i--;
+	}
+	if (str[i + 2] == '.')
+	{
+		print = ft_format_dot(print, str, i + 1, args);
+		return (print);
+	}
 	j = ft_increment(str, i);
 	nb_zero = ft_nb_zero(str, i);
 	if (str[i + j + 2] == 's')

@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 10:42:12 by madamou           #+#    #+#             */
-/*   Updated: 2024/04/23 09:04:15 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/12 15:29:57 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ int	ft_give_good_increment(const char *str, int i)
 	int	j;
 
 	j = 0;
+	if (str[i + 1] == '-')
+	{
+		while (str[i + 1] == '-')
+			i++;
+	}
 	while (str[i + 2 + j] >= '0' && str[i + 2 + j] <= '9')
 		j++;
 	if (ft_check_zero(str, i, j) == 1)

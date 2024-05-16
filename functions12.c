@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:33:02 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 14:54:21 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/12 14:29:44 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_hexa_lowercase_zero(char *print, unsigned int nb, int nb_zero)
 	result = ft_itoa_base(nb, base);
 	if (!result)
 		return (NULL);
+	if (result[0] == '0' && nb_zero == 0)
+		return (free(result), print);
 	len_result = ft_strlen1(result);
 	if (len_result < nb_zero)
 	{
