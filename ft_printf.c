@@ -75,6 +75,8 @@ int	ft_printf(const char *str, ...)
 	char	*print;
 
 	print = malloc(sizeof(char));
+	if (!print)
+		return (0);
 	print[0] = '\0';
 	ft_len_print(0);
 	va_start(args, str);
@@ -84,8 +86,7 @@ int	ft_printf(const char *str, ...)
 	return (va_end(args), ft_putstr(print), ft_len_print(2));
 }
 
-int	main(void)
+/*int	main(void)
 {
-	printf(" %d\n", printf("pegadinha po"));
-	printf(" %d\n", ft_printf("pegadinha po"));
-}
+	ft_printf(" %d\n", ft_printf("%c\n", 9898));
+}*/
