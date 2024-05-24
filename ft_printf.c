@@ -51,6 +51,8 @@ int	ft_printf(const char *str, ...)
 	va_list	args;
 	char	*print;
 
+	if (!str)
+		return (-1);
 	print = malloc(sizeof(char));
 	if (!print)
 		return (0);
