@@ -6,42 +6,24 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/16 05:57:16 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:03:53 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr(char *s)
+int	ft_len_print(int cas)
 {
-	if (s)
-	{
-		write(1, s, ft_len_print(2));
-		free(s);
-	}
-}
+	static int	len;
 
-char	*ft_check_if_format(const char *str, int i, char *print, va_list args)
-{
-	if (str[i] == '%' && str[i + 1] == 'c')
-		print = ft_char(print, (char)va_arg(args, int));
-	if (str[i] == '%' && str[i + 1] == '%')
-		print = ft_char(print, '%');
-	else if (str[i] == '%' && str[i + 1] == 's')
-		print = ft_string(print, (char *)va_arg(args, char *));
-	else if (str[i] == '%' && str[i + 1] == 'u')
-		print = ft_unsigned(print, (unsigned int)va_arg(args, unsigned int));
-	else if (str[i] == '%' && str[i + 1] == 'p')
-		print = ft_pointer(print, (void *)va_arg(args, void *));
-	else if (str[i] == '%' && str[i + 1] == 'x')
-		print = ft_hexa_lowercase(print, (unsigned int)va_arg(args,
-					unsigned int), 1);
-	else if (str[i] == '%' && str[i + 1] == 'X')
-		print = ft_hexa_uppercase(print, (unsigned int)va_arg(args,
-					unsigned int), 1);
-	else if (str[i] == '%' && (str[i + 1] == 'd' || str[i + 1] == 'i'))
-		print = ft_decimal(print, (int)va_arg(args, int), 1);
-	return (print);
+	if (cas == 0)
+		return (len = 0, len);
+	if (cas == 1)
+	{
+		len++;
+		return (len);
+	}
+	return (len);
 }
 
 char	*ft_printf_bis(char *print, const char *str, va_list args)
@@ -55,11 +37,6 @@ char	*ft_printf_bis(char *print, const char *str, va_list args)
 		{
 			print = ft_check_if_format(str, i, print, args);
 			i += 2;
-		}
-		else if (ft_check_bonus(str, i) == 1)
-		{
-			print = ft_format_bonus(str, i, print, args);
-			i = ft_give_good_increment(str, i);
 		}
 		else if (str[i])
 			print = ft_str_to_print(print, str[i++]);
@@ -88,5 +65,5 @@ int	ft_printf(const char *str, ...)
 
 /*int	main(void)
 {
-	ft_printf(" %d\n", ft_printf("%c\n", 9898));
+	ft_printf(" %d\n", ft_printf("%u\n", 9898));
 }*/

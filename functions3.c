@@ -6,24 +6,22 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 20:02:12 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/11 19:13:13 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:06:06 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_moulinette(char *result, unsigned long long int nb, int size,
+static void	ft_fill_itoa(char *result, unsigned long long int nb, int size,
 		char *base)
 {
 	if (nb >= (unsigned long long int)ft_strlen1(base))
 	{
-		ft_moulinette(result, nb / ft_strlen1(base), size - 1, base);
-		ft_moulinette(result, nb % ft_strlen1(base), size, base);
+		ft_fill_itoa(result, nb / ft_strlen1(base), size - 1, base);
+		ft_fill_itoa(result, nb % ft_strlen1(base), size, base);
 	}
 	if (nb < (unsigned long long int)ft_strlen1(base))
-	{
 		result[size - 1] = base[nb];
-	}
 }
 
 char	*ft_itoa_long_long(unsigned long long int nb, char *base)
@@ -37,7 +35,7 @@ char	*ft_itoa_long_long(unsigned long long int nb, char *base)
 	result = malloc(sizeof(char) * (size + 1));
 	if (result == NULL)
 		return (NULL);
-	ft_moulinette(result, nb, size, base);
+	ft_fill_itoa(result, nb, size, base);
 	result[size] = '\0';
 	return (result);
 }
@@ -67,60 +65,6 @@ char	*ft_pointer(char *print, void *ptr)
 		if (!print)
 			return (free(result), NULL);
 		print = ft_strcatt(print, "(nil)");
-	}
-	return (free(result), print);
-}
-
-char	*ft_decimal_zero(char *print, int nb, int nb_zero)
-{
-	char	*result;
-	int		sign;
-
-	sign = 0;
-	if (nb < 0)
-	{
-		nb = -nb;
-		sign = 1;
-	}
-	result = ft_itoa(nb);
-	if (!result)
-		return (NULL);
-	if (nb_zero > ft_strlen1(result))
-		print = ft_fill_zero1(print, nb_zero, result, sign);
-	else
-	{
-		if (sign == 1)
-			print = ft_decimal(print, -nb, 1);
-		else
-			print = ft_decimal(print, nb, 1);
-	}
-	return (free(result), print);
-}
-
-char	*ft_decimal_zero1(char *print, int nb, int nb_zero)
-{
-	char	*result;
-	int		sign;
-
-	sign = 0;
-	if (nb < 0)
-	{
-		nb = -nb;
-		sign = 1;
-	}
-	result = ft_itoa(nb);
-	if (!result)
-		return (NULL);
-	if (result[0] == '0' && nb_zero == 0)
-		return (free(result), print);
-	if (nb_zero > ft_strlen1(result) - sign)
-		print = ft_fill_zero(print, nb_zero, result, sign);
-	else
-	{
-		if (sign == 1)
-			print = ft_decimal(print, -nb, 1);
-		else
-			print = ft_decimal(print, nb, 1);
 	}
 	return (free(result), print);
 }

@@ -6,26 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 01:27:18 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/16 05:59:05 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:03:22 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char	*ft_reallocc(char *print, int len_realloc)
-{
-	char	*tmp;
-	int		i;
-
-	i = ft_len_print(2);
-	tmp = malloc(sizeof(char) * (i + len_realloc + 1));
-	if (!tmp)
-		return (NULL);
-	tmp[0] = '\0';
-	tmp = ft_strcpyy(tmp, print);
-	free(print);
-	return (tmp);
-}
 
 char	*ft_string(char *print, char *str)
 {

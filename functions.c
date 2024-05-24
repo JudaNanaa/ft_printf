@@ -6,35 +6,11 @@
 /*   By: madamou <madamou@contact.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:03:40 by madamou           #+#    #+#             */
-/*   Updated: 2024/05/09 00:46:38 by madamou          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:02:49 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_strlen1(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str && str[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strcpyy(char *dest, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (i < ft_len_print(2))
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
 
 char	*ft_str_to_print(char *print, char c)
 {
