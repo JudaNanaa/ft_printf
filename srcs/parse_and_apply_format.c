@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 22:08:06 by madamou           #+#    #+#             */
-/*   Updated: 2024/11/16 22:22:24 by madamou          ###   ########.fr       */
+/*   Updated: 2024/11/17 15:45:13 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,11 @@ int	process_flag_to_arg(t_data *data)
 		return (-1);
 	if (data->format.options[HASH] == true && flag_hash(data) == -1)
 		return (-1);
-	if (data->format.options[DOT] == true && precision(data) == -1)
-		return (-1);
+	if (data->format.options[DOT] == true)
+	{
+		if (precision(data) == -1)
+			return (-1);
+	}
 	else if (data->format.options[ZERO] == true && flag_zero(data) == -1)
 		return (-1);
 	if (data->format.options[MINUS] == true && flag_minus(data) == -1)

@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:12:36 by madamou           #+#    #+#             */
-/*   Updated: 2024/11/16 22:46:17 by madamou          ###   ########.fr       */
+/*   Updated: 2024/11/17 15:49:04 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_printf(const char *str, ...)
 	i = 0;
 	if (!str)
 		return (-1);
-	(ft_memset(&data, 0, sizeof(data)), va_start(args, str));
+	(ft_bzero(&data, sizeof(data)), va_start(args, str));
 	while (str[i])
 	{
 		if (str[i] == '%')
@@ -45,5 +45,6 @@ int	ft_printf(const char *str, ...)
 
 // int	main(void)
 // {
-// 	ft_printf(" %d\n", ft_printf("%u\n", 9898));
+// 	printf(" return value == [%d]\n", printf("%.6i", -3));
+// 	printf(" return value == [%d]\n", ft_printf("%.6i", -3));
 // }

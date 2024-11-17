@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 21:34:44 by madamou           #+#    #+#             */
-/*   Updated: 2024/11/16 22:22:24 by madamou          ###   ########.fr       */
+/*   Updated: 2024/11/17 15:24:12 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,12 @@ int	precision_decimal(t_data *data)
 	if (dest == NULL)
 		return (-1);
 	if (data->format.arg[0] == '-' || data->format.arg[0] == '+')
+	{
+		dest[0] = data->format.arg[0];
 		sign = 1;
+	}
 	ft_memset(dest + sign, '0', data->format.precision - len_arg + sign);
-	ft_strcat(dest + sign, data->format.arg);
+	ft_strcat(dest, data->format.arg + sign);
 	free(data->format.arg);
 	data->format.arg = dest;
 	data->format.len = ft_strlen(data->format.arg);

@@ -89,7 +89,6 @@ clean :
 
 fclean : clean
 	@rm -rf $(NAME)
-	@rm -rf $(EXEC)
 	@echo "🧼🧼$(PURPLE)executable cleaned$(END)🧼🧼"
 
 re : fclean all
