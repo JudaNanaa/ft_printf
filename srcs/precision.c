@@ -6,13 +6,13 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 21:34:44 by madamou           #+#    #+#             */
-/*   Updated: 2024/11/17 15:24:12 by madamou          ###   ########.fr       */
+/*   Updated: 2024/12/03 01:11:20 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	clear_arg(t_data *data)
+int	clear_arg(t_printf *data)
 {
 	free(data->format.arg);
 	data->format.arg = ft_strnew(0);
@@ -22,7 +22,7 @@ int	clear_arg(t_data *data)
 	return (0);
 }
 
-int	precision_decimal(t_data *data)
+int	precision_decimal(t_printf *data)
 {
 	char			*dest;
 	unsigned int	len_arg;
@@ -50,7 +50,7 @@ int	precision_decimal(t_data *data)
 	return (0);
 }
 
-int	precision_unsigned_hexa(t_data *data)
+int	precision_unsigned_hexa(t_printf *data)
 {
 	char			*dest;
 	unsigned int	len_arg;
@@ -71,7 +71,7 @@ int	precision_unsigned_hexa(t_data *data)
 	return (0);
 }
 
-int	precision(t_data *data)
+int	precision(t_printf *data)
 {
 	char			*dest;
 	unsigned int	len_arg;

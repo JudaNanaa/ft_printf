@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ../includes/ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 19:05:26 by madamou           #+#    #+#             */
-/*   Updated: 2024/11/16 22:42:50 by madamou          ###   ########.fr       */
+/*   Updated: 2024/12/03 01:10:48 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,29 @@ typedef struct s_format
 typedef struct s_data
 {
 	char			buffer[MAX_BUFFER];
+	char			*str;
+	int				fd;
+	bool			print;
 	t_format		format;
 	unsigned int	len;
 	unsigned int	nb_print;
-}					t_data;
+}					t_printf;
 
+// Function
 int					ft_printf(const char *str, ...);
-
+int					ft_dprintf(int fd, const char *str, ...);
+char				*ft_sprintf(const char *str, ...);
 // Parsing
-int					parse_flag(const char *str, t_data *data, va_list args);
+int					parse_flag(const char *str, t_printf *data, va_list args);
 
 // Format
-int					format_char(t_data *print, char c);
-int					format_str(t_data *data, char *str);
-int					format_int(t_data *data, int nb);
-int					format_unsigned(t_data *data, unsigned int nb);
-int					format_lower_x(t_data *data, unsigned int nb);
-int					format_upper_x(t_data *data, unsigned int nb);
-int					format_pointer(t_data *data, unsigned long long nb);
+int					format_char(t_printf *print, char c);
+int					format_str(t_printf *data, char *str);
+int					format_int(t_printf *data, int nb);
+int					format_unsigned(t_printf *data, unsigned int nb);
+int					format_lower_x(t_printf *data, unsigned int nb);
+int					format_upper_x(t_printf *data, unsigned int nb);
+int					format_pointer(t_printf *data, unsigned long long nb);
 
 // Utils
 char				*ft_itoa_base(unsigned int nb, char *base);
@@ -73,17 +78,18 @@ char				*ft_itoa_long_long(unsigned long long int nb, char *base);
 int					ft_atoi_base(const char *str, int str_base);
 
 // Flags
-int					flag_plus(t_data *data);
-int					flag_space(t_data *data);
-int					flag_hash(t_data *data);
-int					flag_minus(t_data *data);
-int					flag_zero(t_data *data);
-int					field_minimum_width(t_data *data);
-int					precision(t_data *data);
+int					flag_plus(t_printf *data);
+int					flag_space(t_printf *data);
+int					flag_hash(t_printf *data);
+int					flag_minus(t_printf *data);
+int					flag_zero(t_printf *data);
+int					field_minimum_width(t_printf *data);
+int					precision(t_printf *data);
 
 // Buffer functions
-int					add_arg_to_buffer(t_data *data);
-int					add_char_to_buffer(t_data *data, char c);
-void				print_buffer(t_data *data);
-
+int					add_arg_to_buffer(t_printf *data);
+int					add_char_to_buffer(t_printf *data, char c);
+int					print_buffer(t_printf *data);
+int					concatenate_str(t_printf *data);
+void				flush_buffer(t_printf *data);
 #endif

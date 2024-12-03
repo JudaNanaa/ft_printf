@@ -6,14 +6,14 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 02:16:44 by madamou           #+#    #+#             */
-/*   Updated: 2024/11/16 22:29:41 by madamou          ###   ########.fr       */
+/*   Updated: 2024/12/03 01:11:20 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include <stdbool.h>
 
-int	format_char(t_data *data, char c)
+int	format_char(t_printf *data, char c)
 {
 	data->format.arg = malloc(sizeof(char) * (1 + 1));
 	if (data->format.arg == NULL)
@@ -24,7 +24,7 @@ int	format_char(t_data *data, char c)
 	return (0);
 }
 
-int	format_str(t_data *data, char *str)
+int	format_str(t_printf *data, char *str)
 {
 	if (str == NULL)
 	{
@@ -43,7 +43,7 @@ int	format_str(t_data *data, char *str)
 	return (0);
 }
 
-int	format_int(t_data *data, int nb)
+int	format_int(t_printf *data, int nb)
 {
 	data->format.arg = ft_itoa(nb);
 	if (data->format.arg == NULL)
@@ -52,7 +52,7 @@ int	format_int(t_data *data, int nb)
 	return (0);
 }
 
-int	format_pointer(t_data *data, unsigned long long nb)
+int	format_pointer(t_printf *data, unsigned long long nb)
 {
 	char	*pointer;
 

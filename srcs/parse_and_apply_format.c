@@ -6,13 +6,13 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 22:08:06 by madamou           #+#    #+#             */
-/*   Updated: 2024/11/17 15:45:13 by madamou          ###   ########.fr       */
+/*   Updated: 2024/12/03 01:11:20 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	check_flag_type(char c, t_data *data, va_list args)
+int	check_flag_type(char c, t_printf *data, va_list args)
 {
 	if (c == 'c')
 		return (format_char(data, (char)va_arg(args, int)));
@@ -34,7 +34,7 @@ int	check_flag_type(char c, t_data *data, va_list args)
 	return (-1);
 }
 
-void	set_min_width_and_precision(t_data *data, char *str)
+void	set_min_width_and_precision(t_printf *data, char *str)
 {
 	if (str[0])
 		data->format.min_width = ft_atoi(str);
@@ -45,7 +45,7 @@ void	set_min_width_and_precision(t_data *data, char *str)
 	}
 }
 
-void	set_options(t_data *data)
+void	set_options(t_printf *data)
 {
 	int		i;
 	char	*str;
@@ -70,7 +70,7 @@ void	set_options(t_data *data)
 	set_min_width_and_precision(data, &str[i]);
 }
 
-int	process_flag_to_arg(t_data *data)
+int	process_flag_to_arg(t_printf *data)
 {
 	if (data->format.options[PLUS] == true && flag_plus(data) == -1)
 		return (-1);
@@ -90,7 +90,7 @@ int	process_flag_to_arg(t_data *data)
 	return (field_minimum_width(data));
 }
 
-int	parse_flag(const char *str, t_data *data, va_list args)
+int	parse_flag(const char *str, t_printf *data, va_list args)
 {
 	int	i;
 
@@ -110,7 +110,8 @@ int	parse_flag(const char *str, t_data *data, va_list args)
 		if (process_flag_to_arg(data) == -1)
 			return (free(data->format.arg), -1);
 	}
-	add_arg_to_buffer(data);
+	if (add_arg_to_buffer(data) == -1)
+		return (-1);
 	ft_bzero(&data->format, sizeof(data->format));
 	return (++i);
 }
