@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 21:34:44 by madamou           #+#    #+#             */
-/*   Updated: 2024/12/03 01:11:20 by madamou          ###   ########.fr       */
+/*   Updated: 2024/12/03 03:29:01 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	precision(t_printf *data)
 	unsigned int	len_arg;
 
 	len_arg = data->format.len;
-	if (data->format.flag == 'c')
+	if (data->format.flag == 'c' || data->format.flag == 'p')
 		return (0);
 	if (data->format.flag == 's' && data->format.nulptr == true
 		&& len_arg > data->format.precision)
