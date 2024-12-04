@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 03:32:54 by madamou           #+#    #+#             */
-/*   Updated: 2024/12/03 03:32:57 by madamou          ###   ########.fr       */
+/*   Updated: 2024/12/04 22:00:37 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,13 @@ typedef struct s_data
 }					t_printf;
 
 // Function
-int					ft_printf(const char *str, ...);
-int					ft_dprintf(int fd, const char *str, ...);
-char				*ft_sprintf(const char *str, ...);
+int					ft_printf(const char *str, ...)
+					__attribute__ ((format (printf, 1, 2)));
+int					ft_dprintf(int fd, const char *str, ...)
+					__attribute__ ((format (printf, 2, 3)));
+char				*ft_sprintf(const char *str, ...)
+					__attribute__ ((format (printf, 1, 2)));
+
 // Parsing
 int					parse_flag(const char *str, t_printf *data, va_list args);
 
