@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:40:01 by madamou           #+#    #+#             */
-/*   Updated: 2024/12/03 01:11:20 by madamou          ###   ########.fr       */
+/*   Updated: 2024/12/04 21:47:55 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 // int	main(void)
 // {
-// 	printf(" return value == [%d]\n", printf("%08.5i", 34));
-// 	printf(" return value == [%d]\n", ft_printf("%08.5i", 34));
+// 	printf(" return value == [%d]\n", printf("|Str %.......|\n", 3));
+// 	printf(" return value == [%d]\n", ft_printf("|Str %.......|\n", 3));
 // }

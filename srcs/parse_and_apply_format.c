@@ -6,7 +6,7 @@
 /*   By: madamou <madamou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 22:08:06 by madamou           #+#    #+#             */
-/*   Updated: 2024/12/03 01:11:20 by madamou          ###   ########.fr       */
+/*   Updated: 2024/12/04 21:36:23 by madamou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,17 @@ void	set_options(t_printf *data)
 
 int	process_flag_to_arg(t_printf *data)
 {
-	if (data->format.options[PLUS] == true && flag_plus(data) == -1)
-		return (-1);
-	if (data->format.options[SPACE] == true && flag_space(data) == -1)
-		return (-1);
-	if (data->format.options[HASH] == true && flag_hash(data) == -1)
-		return (-1);
 	if (data->format.options[DOT] == true)
 	{
 		if (precision(data) == -1)
 			return (-1);
 	}
+	if (data->format.options[HASH] == true && flag_hash(data) == -1)
+		return (-1);
+	if (data->format.options[PLUS] == true && flag_plus(data) == -1)
+		return (-1);
+	if (data->format.options[SPACE] == true && flag_space(data) == -1)
+		return (-1);
 	else if (data->format.options[ZERO] == true && flag_zero(data) == -1)
 		return (-1);
 	if (data->format.options[MINUS] == true && flag_minus(data) == -1)
